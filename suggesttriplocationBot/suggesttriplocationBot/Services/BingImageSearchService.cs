@@ -27,7 +27,7 @@ namespace suggesttriplocationBot.Services
         /// <summary>
         /// The bing API URL.
         /// </summary>
-        private static readonly string BingApiUrl = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?modulesRequested=SimilarProducts&mkt=en-us&form=BCSPRD";
+        private static readonly string BingApiUrl = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?modulesRequested=similarimages&mkt=en-us&form=BCSPRD";
 
         /// <summary>
         /// Gets a list of visually similar products from an image URL.
@@ -46,7 +46,7 @@ namespace suggesttriplocationBot.Services
                 var response = JsonConvert.DeserializeObject<BingImageResponse>(text);
 
                 return response
-                    ?.visuallySimilarProducts
+                    ?.visuallySimilarImages
                     ?.Select(i => new ImageResult
                     {
                         HostPageDisplayUrl = i.hostPageDisplayUrl,
@@ -81,7 +81,7 @@ namespace suggesttriplocationBot.Services
                 var response = JsonConvert.DeserializeObject<BingImageResponse>(text);
 
                 return response
-                    ?.visuallySimilarProducts
+                    ?.visuallySimilarImages
                     ?.Select(i => new ImageResult
                     {
                         HostPageDisplayUrl = i.hostPageDisplayUrl,

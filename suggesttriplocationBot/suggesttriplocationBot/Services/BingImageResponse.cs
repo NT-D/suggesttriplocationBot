@@ -6,12 +6,13 @@
     {
         public string _type { get; set; }
         public Instrumentation instrumentation { get; set; }
-        public List<VisuallySimilarProduct> visuallySimilarProducts { get; set; }
+        public List<VisuallySimilarImages> visuallySimilarImages { get; set; }
         public string imageInsightsToken { get; set; }
     }
 
     public class Instrumentation
     {
+        public string pingUrlBase { get; set; }
         public string pageLoadPingUrl { get; set; }
     }
 
@@ -21,23 +22,7 @@
         public int height { get; set; }
     }
 
-    public class AggregateRating
-    {
-        public double ratingValue { get; set; }
-        public double bestRating { get; set; }
-    }
-
-    public class AggregateOffer
-    {
-        public string name { get; set; }
-        public string priceCurrency { get; set; }
-        public AggregateRating aggregateRating { get; set; }
-        public double lowPrice { get; set; }
-        public int offerCount { get; set; }
-    }
-
-    //TODO: Change class name and model
-    public class VisuallySimilarProduct
+    public class VisuallySimilarImages
     {
         public string name { get; set; }
         public string webSearchUrl { get; set; }
@@ -54,6 +39,5 @@
         public string imageInsightsToken { get; set; }
         public string imageId { get; set; }
         public string accentColor { get; set; }
-        public AggregateOffer aggregateOffer { get; set; }
     }
 }
