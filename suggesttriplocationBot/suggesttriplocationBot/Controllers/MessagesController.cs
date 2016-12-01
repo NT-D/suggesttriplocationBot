@@ -98,25 +98,25 @@ namespace suggesttriplocationBot
             {
                 using (var stream = await GetImageStream(connector, imageAttachment))
                 {
-                    return await this.imageService.GetSimilarProductImagesAsync(stream);
+                    return await this.imageService.GetSimilarImagesAsync(stream);
                 }
             }
 
             string url;
             if (TryParseAnchorTag(activity.Text, out url))
             {
-                return await this.imageService.GetSimilarProductImagesAsync(url);
+                return await this.imageService.GetSimilarImagesAsync(url);
             }
 
             if (Uri.IsWellFormedUriString(activity.Text, UriKind.Absolute))
             {
-                return await this.imageService.GetSimilarProductImagesAsync(activity.Text);
+                return await this.imageService.GetSimilarImagesAsync(activity.Text);
             }
 
             // If we reach here then the activity is neither an image attachment nor an image URL.
             throw new ArgumentException("The activity doesn't contain a valid image attachment or an image URL.");
         }
-
+        
         private IList<Attachment> BuildImageAttachments(IEnumerable<ImageResult> images)
         {
             var attachments = new List<Attachment>();

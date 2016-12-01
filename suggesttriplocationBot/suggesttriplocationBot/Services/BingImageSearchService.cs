@@ -34,7 +34,7 @@ namespace suggesttriplocationBot.Services
         /// </summary>
         /// <param name="url">The URL of an image.</param>
         /// <returns>List of visually similar products' images.</returns>
-        public async Task<IList<ImageResult>> GetSimilarProductImagesAsync(string url)
+        public async Task<IList<ImageResult>> GetSimilarImagesAsync(string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -64,7 +64,7 @@ namespace suggesttriplocationBot.Services
         /// </summary>
         /// <param name="stream">The stream to an image.</param>
         /// <returns>List of visually similar images.</returns>
-        public async Task<IList<ImageResult>> GetSimilarProductImagesAsync(Stream stream)
+        public async Task<IList<ImageResult>> GetSimilarImagesAsync(Stream stream)
         {
             using (var httpClient = new HttpClient())
             {
