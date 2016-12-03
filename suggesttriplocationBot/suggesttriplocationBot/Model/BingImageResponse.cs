@@ -6,6 +6,7 @@
     {
         public string _type { get; set; }
         public Instrumentation instrumentation { get; set; }
+        public BestRepresentativeQuery bestRepresentativeQuery { get; set; }
         public List<VisuallySimilarImages> visuallySimilarImages { get; set; }
         public string imageInsightsToken { get; set; }
     }
@@ -14,6 +15,14 @@
     {
         public string pingUrlBase { get; set; }
         public string pageLoadPingUrl { get; set; }
+    }
+
+    public class BestRepresentativeQuery
+    {
+        public string text { get; set; }
+        public string displayText { get; set; }
+        public string webSearchUrl { get; set; }
+        public string webSearchUrlPingSuffix { get; set; }
     }
 
     public class Thumbnail
