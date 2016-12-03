@@ -125,10 +125,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BingImageResponse.cs" />
+    <Compile Include="Model\BingImageResponse.cs" />
     <Compile Include="Services\BingImageSearchService.cs" />
     <Compile Include="Services\IImageSearchService.cs" />
-    <Compile Include="Services\ImageResult.cs" />
+    <Compile Include="Model\ImageResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

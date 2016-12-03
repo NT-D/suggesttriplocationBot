@@ -1,4 +1,4 @@
-﻿namespace suggesttriplocationBot.Services
+﻿namespace suggesttriplocationBot.Model
 {
     using System.Collections.Generic;
 

@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Configuration;
 using Newtonsoft.Json;
-
+using suggesttriplocationBot.Model;
 
 namespace suggesttriplocationBot.Services
 {
@@ -27,7 +27,7 @@ namespace suggesttriplocationBot.Services
         /// <summary>
         /// The bing API URL.
         /// </summary>
-        private static readonly string BingApiUrl = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?modulesRequested=similarimages&mkt=en-us&form=BCSPRD";
+        private static readonly string BingApiUrl = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?modulesRequested=All&mkt=en-us&form=BCSPRD";
 
         /// <summary>
         /// Gets a list of visually similar products from an image URL.

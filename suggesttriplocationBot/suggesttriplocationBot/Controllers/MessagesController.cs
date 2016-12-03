@@ -11,6 +11,7 @@ using System.IO;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using suggesttriplocationBot.Services;
+using suggesttriplocationBot.Model;
 
 namespace suggesttriplocationBot
 {
@@ -39,6 +40,7 @@ namespace suggesttriplocationBot
                 try
                 {
                     var images = await this.GetSimilarImagesAsync(activity, connector);
+                    
 
                     if (images != null && images.Any())
                     {
