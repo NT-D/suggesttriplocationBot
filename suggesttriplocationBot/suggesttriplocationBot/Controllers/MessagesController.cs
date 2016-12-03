@@ -39,7 +39,8 @@ namespace suggesttriplocationBot
 
                 try
                 {
-                    var images = await this.GetSimilarImagesAsync(activity, connector);
+                    var result = await this.GetSimilarImagesAsync(activity, connector);
+                    var images = result.similarImages;
                     
 
                     if (images != null && images.Any())
@@ -93,7 +94,7 @@ namespace suggesttriplocationBot
         /// <param name="connector">The connector.</param>
         /// <returns>List of visually similar products' images.</returns>
         /// <exception cref="ArgumentException">The activity doesn't contain a valid image attachment or an image URL.</exception>
-        private async Task<IList<ImageResult>> GetSimilarImagesAsync(Activity activity, ConnectorClient connector)
+        private async Task<ImageResult> GetSimilarImagesAsync(Activity activity, ConnectorClient connector)
         {
             var imageAttachment = activity.Attachments?.FirstOrDefault(a => a.ContentType.Contains("image"));
             if (imageAttachment != null)
@@ -119,7 +120,7 @@ namespace suggesttriplocationBot
             throw new ArgumentException("The activity doesn't contain a valid image attachment or an image URL.");
         }
         
-        private IList<Attachment> BuildImageAttachments(IEnumerable<ImageResult> images)
+        private IList<Attachment> BuildImageAttachments(IEnumerable<SimilarImage> images)
         {
             var attachments = new List<Attachment>();
 

@@ -34,7 +34,7 @@ namespace suggesttriplocationBot.Services
         /// </summary>
         /// <param name="url">The URL of an image.</param>
         /// <returns>List of visually similar products' images.</returns>
-        public async Task<IList<ImageResult>> GetSimilarImagesAsync(string url)
+        public async Task<ImageResult> GetSimilarImagesAsync(string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -45,9 +45,14 @@ namespace suggesttriplocationBot.Services
                 var text = await httpClient.GetStringAsync(apiUrl);
                 var response = JsonConvert.DeserializeObject<BingImageResponse>(text);
 
-                return response
+                ImageResult result = new ImageResult();
+                if(response.bestRepresentativeQuery.displayText != null)
+                {
+                    result.suggestedText = response.bestRepresentativeQuery.displayText;
+                }
+                result.similarImages = response
                     ?.visuallySimilarImages
-                    ?.Select(i => new ImageResult
+                    ?.Select(i => new SimilarImage
                     {
                         HostPageDisplayUrl = i.hostPageDisplayUrl,
                         HostPageUrl = i.hostPageUrl,
@@ -56,6 +61,7 @@ namespace suggesttriplocationBot.Services
                         WebSearchUrl = i.webSearchUrl
                     })
                     .ToList();
+                return result;
             }
         }
 
@@ -64,7 +70,7 @@ namespace suggesttriplocationBot.Services
         /// </summary>
         /// <param name="stream">The stream to an image.</param>
         /// <returns>List of visually similar images.</returns>
-        public async Task<IList<ImageResult>> GetSimilarImagesAsync(Stream stream)
+        public async Task<ImageResult> GetSimilarImagesAsync(Stream stream)
         {
             using (var httpClient = new HttpClient())
             {
@@ -80,9 +86,14 @@ namespace suggesttriplocationBot.Services
                 var text = await postResponse.Content.ReadAsStringAsync();
                 var response = JsonConvert.DeserializeObject<BingImageResponse>(text);
 
-                return response
+                ImageResult result = new ImageResult();
+                if (response.bestRepresentativeQuery.displayText != null)
+                {
+                    result.suggestedText = response.bestRepresentativeQuery.displayText;
+                }
+                result.similarImages = response
                     ?.visuallySimilarImages
-                    ?.Select(i => new ImageResult
+                    ?.Select(i => new SimilarImage
                     {
                         HostPageDisplayUrl = i.hostPageDisplayUrl,
                         HostPageUrl = i.hostPageUrl,
@@ -91,6 +102,7 @@ namespace suggesttriplocationBot.Services
                         WebSearchUrl = i.webSearchUrl
                     })
                     .ToList();
+                return result;
             }
         }
     }

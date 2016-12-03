@@ -7,6 +7,12 @@ namespace suggesttriplocationBot.Model
 {
     public class ImageResult
     {
+        public string suggestedText { get; set; }
+        public List<SimilarImage> similarImages { get; set; }
+    }
+
+    public class SimilarImage
+    {
         public string HostPageDisplayUrl { get; set; }
 
         public string HostPageUrl { get; set; }
@@ -16,5 +22,6 @@ namespace suggesttriplocationBot.Model
         public string ThumbnailUrl { get; set; }
 
         public string WebSearchUrl { get; set; }
+
     }
 }

@@ -12,14 +12,14 @@ namespace suggesttriplocationBot.Services
         /// </summary>
         /// <param name="stream">The stream to an image.</param>
         /// <returns>List of visually similar products' images.</returns>
-        Task<IList<ImageResult>> GetSimilarImagesAsync(Stream stream);
+        Task<ImageResult> GetSimilarImagesAsync(Stream stream);
 
         /// <summary>
         /// Gets a list of visually similar products from an image URL.
         /// </summary>
         /// <param name="url">The URL of an image.</param>
         /// <returns>List of visually similar products' images.</returns>
-        Task<IList<ImageResult>> GetSimilarImagesAsync(string url);
+        Task<ImageResult> GetSimilarImagesAsync(string url);
 
     }
 }
