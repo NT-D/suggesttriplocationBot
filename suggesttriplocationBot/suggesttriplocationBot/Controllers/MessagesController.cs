@@ -45,7 +45,8 @@ namespace suggesttriplocationBot
 
                     if (images != null && images.Any())
                     {
-                        Activity reply = activity.CreateReply("Here are some visually similar products I found");
+                        //Make attachment and reply it to user
+                        Activity reply = activity.CreateReply("Here are some web pages or blog posts to know this location more.");
                         reply.Type = ActivityTypes.Message;
                         reply.AttachmentLayout = "carousel";
                         reply.Attachments = this.BuildImageAttachments(images.Take(MaxCardCount));
@@ -54,7 +55,7 @@ namespace suggesttriplocationBot
                     }
                     else
                     {
-                        message = "Couldn't find similar products images for this one";
+                        message = "Couldn't find information. Let's try other photos";
                     }
                 }
                 catch (ArgumentException e)
