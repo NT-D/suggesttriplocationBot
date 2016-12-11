@@ -19,6 +19,7 @@ namespace suggesttriplocationBot
     public class MessagesController : ApiController
     {
         private readonly IImageSearchService imageService = new BingImageSearchService();
+        private readonly BingMapService bingMapSevice = new BingMapService();
 
         /// <summary>
         /// Maximum number of hero cards to be returned in the carousel. If this number is greater than 5, skype throws an exception.
@@ -51,6 +52,13 @@ namespace suggesttriplocationBot
                         reply.AttachmentLayout = "carousel";
                         reply.Attachments = this.BuildImageAttachments(images.Take(MaxCardCount));
                         await connector.Conversations.ReplyToActivityAsync(reply);
+
+                        //Find location from similiar search result
+                        FindLocationResponse locationData = await bingMapSevice.FindLocation(result.suggestedText);
+                        Activity replyPlace = activity.CreateReply($"You may want to go [{locationData.resourceSets[0].resources[0].name}]({bingMapSevice.CreateCustomMapUrl(locationData)})");
+                        replyPlace.Type = ActivityTypes.Message;
+                        await connector.Conversations.ReplyToActivityAsync(replyPlace);
+
                         replied = true;
                     }
                     else
